@@ -1,0 +1,29 @@
+<div class="container" style="max-width: 500px; margin: 40px auto;" *ngIf="tarefa">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Editar Tarefa</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Título</mat-label>
+        <input matInput [(ngModel)]="tarefa.titulo">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Prioridade</mat-label>
+        <input matInput type="number" [(ngModel)]="tarefa.prioridade">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Observação</mat-label>
+        <textarea matInput [(ngModel)]="tarefa.observacao"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+      <button mat-button (click)="voltar()">Voltar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

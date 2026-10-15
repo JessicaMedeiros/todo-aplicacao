@@ -1,0 +1,43 @@
+<div class="container" style="max-width: 600px; margin: 40px auto;">
+  <h1>Minhas Tarefas</h1>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Nova tarefa</mat-label>
+    <input matInput [(ngModel)]="novoTitulo" (keyup.enter)="adicionar()">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Prioridade</mat-label>
+    <input matInput type="number" [(ngModel)]="novaPrioridade">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Observação</mat-label>
+    <textarea matInput [(ngModel)]="novaObs"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="adicionar()" style="margin-bottom: 20px;">
+    Adicionar
+  </button>
+
+  <mat-list>
+    <mat-list-item *ngFor="let tarefa of tarefas"
+                    [routerLink]="['/tarefas', tarefa.id]"
+                    style="cursor: pointer; border-bottom: 1px solid #eee;">
+      <div matListItemTitle [style.text-decoration]="tarefa.concluida ? 'line-through' : 'none'">
+        {{ tarefa.titulo }}
+      </div>
+      <div matListItemLine>
+        <mat-chip>Prioridade {{ tarefa.prioridade }}</mat-chip>
+      </div>
+      <div matListItemMeta>
+        <button mat-icon-button *ngIf="!tarefa.concluida" (click)="concluir(tarefa.id, $event)">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-icon-button (click)="remover(tarefa.id, $event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
