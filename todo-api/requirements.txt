@@ -1,4 +1,4 @@
 fastapi
 uvicorn
 sqlalchemy
-ng build
+alembic
