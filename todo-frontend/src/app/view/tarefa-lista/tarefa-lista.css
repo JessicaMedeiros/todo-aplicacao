@@ -60,35 +60,38 @@
   border-radius: 10px;
   padding: 16px 16px 2px;
   margin-bottom: 20px;
-}
-
-.add-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 10px;
-}
-
-.field-title {
-  flex: 1;
-}
-
-.field-prioridade {
-  width: 160px;
-  flex-shrink: 0;
-}
-
-.field-obs {
-  width: 100%;
 }
 
 .add-form mat-form-field {
   font-size: 0.9375rem;
 }
 
+.field-title {
+  flex: 1 1 180px;
+  order: 1;
+}
+
+.field-prioridade {
+  width: 160px;
+  flex-shrink: 0;
+  order: 2;
+}
+
 .btn-add {
   margin-top: 4px;
   height: 48px;
   font-weight: 600;
+  order: 3;
+  flex-shrink: 0;
+}
+
+.field-obs {
+  flex: 1 1 100%;
+  order: 4;
 }
 
 /* ── Task list ───────────────────────────────────── */
@@ -213,4 +216,57 @@
   text-align: center;
   padding: 48px 0 32px;
   margin: 0;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .page {
+    padding: 28px 12px 56px;
+  }
+
+  .heading {
+    font-size: 1.75rem;
+  }
+
+  .add-form {
+    padding: 14px 12px 2px;
+  }
+
+  .add-row {
+    flex-wrap: wrap;
+  }
+
+  .field-title {
+    flex: 1 1 100%;
+  }
+
+  .field-prioridade {
+    width: calc(50% - 5px);
+  }
+
+  .btn-add {
+    width: calc(50% - 5px);
+    flex: 0 0 auto;
+  }
+
+  .task-row {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .task-title {
+    font-size: 0.9rem;
+  }
+
+  .task-obs {
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 420px) {
+  .field-prioridade,
+  .btn-add {
+    width: 100%;
+  }
 }

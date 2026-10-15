@@ -7,26 +7,24 @@
     </header>
 
     <div class="add-form">
-      <div class="add-row">
-        <mat-form-field appearance="outline" class="field-title">
-          <mat-label>Nova tarefa</mat-label>
-          <input matInput [(ngModel)]="novoTitulo" (keyup.enter)="adicionar()" autocomplete="off">
-        </mat-form-field>
+      <mat-form-field appearance="outline" class="field-title">
+        <mat-label>Nova tarefa</mat-label>
+        <input matInput [(ngModel)]="novoTitulo" (keyup.enter)="adicionar()" autocomplete="off">
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="field-prioridade">
-          <mat-label>Prioridade</mat-label>
-          <mat-select [(ngModel)]="novaPrioridade">
-            <mat-option [value]="0">Sem prioridade</mat-option>
-            <mat-option [value]="1">Baixa</mat-option>
-            <mat-option [value]="2">Média</mat-option>
-            <mat-option [value]="3">Alta</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field appearance="outline" class="field-prioridade">
+        <mat-label>Prioridade</mat-label>
+        <mat-select [(ngModel)]="novaPrioridade">
+          <mat-option [value]="0">Sem prioridade</mat-option>
+          <mat-option [value]="1">Baixa</mat-option>
+          <mat-option [value]="2">Média</mat-option>
+          <mat-option [value]="3">Alta</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <button mat-flat-button class="btn-add" (click)="adicionar()">
-          Adicionar
-        </button>
-      </div>
+      <button mat-flat-button class="btn-add" (click)="adicionar()">
+        Adicionar
+      </button>
 
       <mat-form-field appearance="outline" class="field-obs">
         <mat-label>Observação (opcional)</mat-label>
