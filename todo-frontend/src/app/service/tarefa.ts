@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tarefa } from '../model/tarefa';
 import { TarefaDto } from '../model/tarefadto';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TarefaService {
-  private apiUrl = 'http://localhost:8000/tarefas';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
