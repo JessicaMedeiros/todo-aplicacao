@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["https://todo-aplicacao-mauve.vercel.app", "http://localhost:4200"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
