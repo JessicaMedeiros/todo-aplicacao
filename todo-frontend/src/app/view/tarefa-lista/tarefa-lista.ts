@@ -46,7 +46,6 @@ export class TarefaLista implements OnInit {
       this.carregar();
     });
   }
-
   concluir(id: number, event: Event) {
     event.stopPropagation(); // impede de navegar pro detalhe ao clicar no botão
     this.tarefaService.concluir(id).subscribe(() => this.carregar());
