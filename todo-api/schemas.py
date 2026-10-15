@@ -1,18 +1,17 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-# o que a API espera receber quando criamos uma tarefa
+
 class TarefaCreate(BaseModel):
     titulo: str
-    prioridade: int
+    prioridade: int = 0
     observacao: str | None = None
 
-# o que a API devolve como resposta
+
 class TarefaResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     titulo: str
     concluida: bool
     prioridade: int
     observacao: str | None = None
-
-    class Config:
-        from_attributes = True  # permite converter direto do objeto do banco
