@@ -1,48 +1,49 @@
 <div class="page" *ngIf="tarefa">
+  <div class="container">
 
-  <div class="detail-card">
-    <div class="priority-bar" [attr.data-priority]="tarefa.prioridade"></div>
+    <nav class="nav">
+      <button mat-button class="btn-back" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+      <span class="status-chip" [class.done]="tarefa.concluida">
+        {{ tarefa.concluida ? 'Concluída' : 'Pendente' }}
+      </span>
+    </nav>
 
-    <div class="detail-content">
-      <header class="detail-header">
-        <button mat-icon-button class="btn-back" (click)="voltar()" aria-label="Voltar">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-        <div class="header-text">
-          <span class="detail-id">Tarefa #{{ tarefa.id }}</span>
-          <h1 class="detail-title">Editar tarefa</h1>
-        </div>
-        <span class="status-badge" [class.status-done]="tarefa.concluida">
-          <mat-icon>{{ tarefa.concluida ? 'task_alt' : 'schedule' }}</mat-icon>
-          {{ tarefa.concluida ? 'Concluída' : 'Pendente' }}
-        </span>
-      </header>
+    <h1 class="heading">
+      Editar tarefa
+      <span class="task-id">#{{ tarefa.id }}</span>
+    </h1>
+
+    <div class="form">
 
       <mat-form-field appearance="outline" class="field-full">
         <mat-label>Título</mat-label>
         <input matInput [(ngModel)]="tarefa.titulo">
-        <mat-icon matPrefix>title</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="field-full">
         <mat-label>Prioridade</mat-label>
-        <input matInput type="number" min="0" [(ngModel)]="tarefa.prioridade">
-        <mat-icon matPrefix>flag</mat-icon>
+        <mat-select [(ngModel)]="tarefa.prioridade">
+          <mat-option [value]="0">Sem prioridade</mat-option>
+          <mat-option [value]="1">Baixa</mat-option>
+          <mat-option [value]="2">Média</mat-option>
+          <mat-option [value]="3">Alta</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="field-full">
         <mat-label>Observação</mat-label>
-        <textarea matInput rows="4" [(ngModel)]="tarefa.observacao"></textarea>
+        <textarea matInput [(ngModel)]="tarefa.observacao" rows="4"></textarea>
       </mat-form-field>
 
-      <div class="actions">
-        <button mat-button class="btn-cancel" (click)="voltar()">Voltar</button>
-        <button mat-flat-button class="btn-save" (click)="salvar()">
-          <mat-icon>save</mat-icon>
-          Salvar
-        </button>
+      <div class="form-actions">
+        <button mat-stroked-button class="btn-cancel" (click)="voltar()">Cancelar</button>
+        <button mat-flat-button class="btn-save" (click)="salvar()">Salvar</button>
       </div>
-    </div>
-  </div>
 
+    </div>
+
+  </div>
 </div>

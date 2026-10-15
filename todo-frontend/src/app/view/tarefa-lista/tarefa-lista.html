@@ -1,94 +1,79 @@
 <div class="page">
+  <div class="container">
 
-  <!-- Header -->
-  <header class="page-header">
-    <h1 class="page-title">
-      <mat-icon class="title-icon">check_circle_outline</mat-icon>
-      Minhas Tarefas
-    </h1>
-    <span class="task-count" *ngIf="tarefas.length">
-      {{ tarefas.length }} tarefa{{ tarefas.length !== 1 ? 's' : '' }}
-    </span>
-  </header>
+    <header class="header">
+      <h1 class="heading">Minhas tarefas</h1>
+      <span class="count" *ngIf="tarefas.length">{{ tarefas.length }}</span>
+    </header>
 
-  <!-- Formulário de nova tarefa -->
-  <div class="form-card">
-    <h2 class="form-title">Nova tarefa</h2>
+    <div class="add-form">
+      <div class="add-row">
+        <mat-form-field appearance="outline" class="field-title">
+          <mat-label>Nova tarefa</mat-label>
+          <input matInput [(ngModel)]="novoTitulo" (keyup.enter)="adicionar()" autocomplete="off">
+        </mat-form-field>
 
-    <mat-form-field appearance="outline" class="field-full">
-      <mat-label>Título</mat-label>
-      <input matInput [(ngModel)]="novoTitulo" (keyup.enter)="adicionar()" placeholder="Ex.: Comprar pão">
-      <mat-icon matPrefix>title</mat-icon>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="field-prioridade">
+          <mat-label>Prioridade</mat-label>
+          <mat-select [(ngModel)]="novaPrioridade">
+            <mat-option [value]="0">Sem prioridade</mat-option>
+            <mat-option [value]="1">Baixa</mat-option>
+            <mat-option [value]="2">Média</mat-option>
+            <mat-option [value]="3">Alta</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div class="field-row">
-      <mat-form-field appearance="outline" class="field-priority">
-        <mat-label>Prioridade</mat-label>
-        <input matInput type="number" min="0" [(ngModel)]="novaPrioridade">
-        <mat-icon matPrefix>flag</mat-icon>
-      </mat-form-field>
+        <button mat-flat-button class="btn-add" (click)="adicionar()">
+          Adicionar
+        </button>
+      </div>
 
       <mat-form-field appearance="outline" class="field-obs">
-        <mat-label>Observação</mat-label>
-        <input matInput [(ngModel)]="novaObs" placeholder="Opcional">
+        <mat-label>Observação (opcional)</mat-label>
+        <input matInput [(ngModel)]="novaObs" autocomplete="off">
       </mat-form-field>
     </div>
 
-    <button mat-flat-button class="btn-add" (click)="adicionar()">
-      <mat-icon>add</mat-icon>
-      Adicionar
-    </button>
-  </div>
-
-  <!-- Lista de tarefas -->
-  <div class="task-list">
-
-    <!-- Estado vazio -->
-    <div class="empty-state" *ngIf="tarefas.length === 0">
-      <mat-icon class="empty-icon">inbox</mat-icon>
-      <p>Nenhuma tarefa por aqui ainda.</p>
-    </div>
-
-    <div
-      class="task-card"
-      *ngFor="let tarefa of tarefas"
-      [class.task-done]="tarefa.concluida"
-      [routerLink]="['/tarefas', tarefa.id]"
-    >
-      <!-- Prioridade como faixa lateral colorida -->
-      <div class="priority-bar" [attr.data-priority]="tarefa.prioridade"></div>
-
-      <div class="task-body">
-        <div class="task-top">
+    <div class="task-list" *ngIf="tarefas.length > 0">
+      <div
+        class="task-row"
+        matRipple
+        [matRippleColor]="'rgba(59,91,219,.08)'"
+        *ngFor="let tarefa of tarefas"
+        [class.done]="tarefa.concluida"
+        [attr.data-p]="tarefa.prioridade"
+        [routerLink]="['/tarefas', tarefa.id]"
+      >
+        <div class="task-main">
           <span class="task-title">{{ tarefa.titulo }}</span>
-          <span class="priority-badge" [attr.data-priority]="tarefa.prioridade">
-            P{{ tarefa.prioridade }}
-          </span>
+          <span class="task-obs" *ngIf="tarefa.observacao">{{ tarefa.observacao }}</span>
         </div>
-        <p class="task-obs" *ngIf="tarefa.observacao">{{ tarefa.observacao }}</p>
-      </div>
-
-      <div class="task-actions" (click)="$event.stopPropagation()">
-        <button
-          mat-icon-button
-          class="btn-check"
-          *ngIf="!tarefa.concluida"
-          (click)="concluir(tarefa.id, $event)"
-          matTooltip="Concluir"
-        >
-          <mat-icon>check_circle</mat-icon>
-        </button>
-        <mat-icon class="done-icon" *ngIf="tarefa.concluida">task_alt</mat-icon>
-        <button
-          mat-icon-button
-          class="btn-delete"
-          (click)="remover(tarefa.id, $event)"
-          matTooltip="Remover"
-        >
-          <mat-icon>delete_outline</mat-icon>
-        </button>
+        <div class="task-actions" (click)="$event.stopPropagation()">
+          <button
+            mat-icon-button
+            *ngIf="!tarefa.concluida"
+            (click)="concluir(tarefa.id, $event)"
+            matTooltip="Concluir"
+            class="check-btn"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+          <mat-icon class="done-mark" *ngIf="tarefa.concluida">check</mat-icon>
+          <button
+            mat-icon-button
+            (click)="remover(tarefa.id, $event)"
+            matTooltip="Remover"
+            class="del-btn"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
+
+    <p class="empty" *ngIf="tarefas.length === 0">
+      Nenhuma tarefa. Adicione uma acima.
+    </p>
 
   </div>
 </div>

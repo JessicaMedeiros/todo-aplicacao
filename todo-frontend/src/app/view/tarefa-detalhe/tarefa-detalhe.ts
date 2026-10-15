@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { TarefaService } from '../../service/tarefa';
 import { Tarefa } from '../../model/tarefa';
@@ -13,7 +14,10 @@ import { Tarefa } from '../../model/tarefa';
 @Component({
   selector: 'app-tarefa-detalhe',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [
+    CommonModule, FormsModule, MatIconModule, MatFormFieldModule,
+    MatInputModule, MatSelectModule, MatButtonModule,
+  ],
   templateUrl: './tarefa-detalhe.html',
   styleUrl: './tarefa-detalhe.css',
 })

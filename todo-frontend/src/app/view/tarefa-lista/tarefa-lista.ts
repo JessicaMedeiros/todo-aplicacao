@@ -3,13 +3,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
 import { TarefaService } from '../../service/tarefa';
 import { Tarefa } from '../../model/tarefa';
 
@@ -18,8 +18,8 @@ import { Tarefa } from '../../model/tarefa';
   standalone: true,
   imports: [
     CommonModule, FormsModule, RouterLink,
-    MatListModule, MatButtonModule, MatIconModule, MatChipsModule,
-    MatFormFieldModule, MatInputModule, MatTooltipModule,
+    MatButtonModule, MatIconModule, MatFormFieldModule,
+    MatInputModule, MatSelectModule, MatTooltipModule, MatRippleModule,
   ],
   templateUrl: './tarefa-lista.html',
   styleUrl: './tarefa-lista.css',
@@ -29,7 +29,7 @@ export class TarefaLista implements OnInit {
 
   tarefas: Tarefa[] = [];
   novoTitulo = '';
-  novaPrioridade = 0; 
+  novaPrioridade = 0;
   novaObs = '';
 
   ngOnInit() {
@@ -45,6 +45,8 @@ export class TarefaLista implements OnInit {
     this.tarefaService.criar({ titulo: this.novoTitulo, prioridade: this.novaPrioridade, observacao: this.novaObs })
     .subscribe(() => {
       this.novoTitulo = '';
+      this.novaObs = '';
+      this.novaPrioridade = 0;
       this.carregar();
     });
   }
