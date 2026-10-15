@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +13,9 @@ import { Tarefa } from '../../model/tarefa';
 @Component({
   selector: 'app-tarefa-detalhe',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './tarefa-detalhe.html',
+  styleUrl: './tarefa-detalhe.css',
 })
 export class TarefaDetalhe implements OnInit {
   private route = inject(ActivatedRoute);

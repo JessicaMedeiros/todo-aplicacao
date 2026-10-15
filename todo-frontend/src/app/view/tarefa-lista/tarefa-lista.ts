@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TarefaService } from '../../service/tarefa';
 import { Tarefa } from '../../model/tarefa';
 
@@ -18,9 +19,10 @@ import { Tarefa } from '../../model/tarefa';
   imports: [
     CommonModule, FormsModule, RouterLink,
     MatListModule, MatButtonModule, MatIconModule, MatChipsModule,
-    MatFormFieldModule, MatInputModule,
+    MatFormFieldModule, MatInputModule, MatTooltipModule,
   ],
   templateUrl: './tarefa-lista.html',
+  styleUrl: './tarefa-lista.css',
 })
 export class TarefaLista implements OnInit {
   private tarefaService = inject(TarefaService);
