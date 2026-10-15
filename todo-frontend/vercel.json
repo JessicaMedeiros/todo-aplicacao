@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "dist/todo-frontend/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
