@@ -1,5 +1,5 @@
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8000/tarefas'
+  production: true,
+  apiUrl: 'https://https://todo-aplicacao.onrender.com/tarefas'  // sua URL do Render
 };
