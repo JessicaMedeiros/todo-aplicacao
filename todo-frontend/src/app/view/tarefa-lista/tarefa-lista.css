@@ -233,21 +233,26 @@
     padding: 14px 12px 2px;
   }
 
-  .add-row {
-    flex-wrap: wrap;
-  }
-
+  /* título → prioridade → observação → adicionar */
   .field-title {
     flex: 1 1 100%;
+    order: 1;
   }
 
   .field-prioridade {
-    width: calc(50% - 5px);
+    width: 100%;
+    order: 2;
+  }
+
+  .field-obs {
+    order: 3;
   }
 
   .btn-add {
-    width: calc(50% - 5px);
-    flex: 0 0 auto;
+    width: 100%;
+    order: 4;
+    margin-top: 2px;
+    margin-bottom: 14px;
   }
 
   .task-row {
@@ -261,12 +266,5 @@
 
   .task-obs {
     max-width: 140px;
-  }
-}
-
-@media (max-width: 420px) {
-  .field-prioridade,
-  .btn-add {
-    width: 100%;
   }
 }
